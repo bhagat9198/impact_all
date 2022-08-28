@@ -1,6 +1,6 @@
 import React from 'react'
-import BodyLayout from '../components/BodyLayout'
-import CourseCard from '../components/CourseCard'
+import BodyLayout from '../components/Layouts/BodyLayout'
+import CourseCard from '../components/Miscellaneous/CourseCard'
 
 export default function Dashboard() {
   return (

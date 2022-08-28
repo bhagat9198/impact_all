@@ -15,7 +15,6 @@ export default function Modal(props) {
           {children}
         </div>
       </div>
-
     </div>}
     </>
   )

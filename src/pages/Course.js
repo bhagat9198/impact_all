@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import BodyLayout from '../components/BodyLayout'
-import Card from '../components/Card'
-import Modal from '../components/Modal';
-import { AiFillStar } from 'react-icons/ai';
+import BodyLayout from '../components/Layouts/BodyLayout'
+import Card from '../components/Miscellaneous/Card'
+import Modal from '../components/Miscellaneous/Modal';
 
 export default function Course() {
   const [isModalOpen, setModalOpen] = useState(false);
