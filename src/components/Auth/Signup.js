@@ -1,8 +1,16 @@
 import React from 'react'
 import { useFormik } from "formik";
+import { toast } from 'react-toastify';
 import { signupSchema } from './../../services/schemas'
+import { signupUser } from './../../services/auth';
+import { useUserStore } from './../../services/store';
 
-export default function Signup() {
+export default function Signup(props) {
+  // const { setUserAuthenticated } = props;
+  const userAuthenticated = useUserStore(state => state.userAuthenticated);
+  const updateAuthState = useUserStore(state => state.updateAuthState);
+  const updateUserDetails = useUserStore(state => state.updateUserDetails);
+
   const {
     values,
     errors,
@@ -15,6 +23,7 @@ export default function Signup() {
     initialValues: {
       username: '',
       password: '',
+      coursename: '',
       startDate: '',
       endDate: '',
     },
@@ -23,10 +32,18 @@ export default function Signup() {
   });
 
   async function onSubmit(values, actions) {
-    console.log(values);
-    console.log(actions);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    actions.resetForm();
+    // console.log('onSubmit :: values :: ', values);
+    const res = await signupUser(values)
+    console.log('onSubmit :: res :: ', res);
+    if (!res.status) {
+      toast.error(res.message);
+      return
+    }
+    localStorage.setItem('impact_user', res.token)
+    updateAuthState(true)
+    updateUserDetails(res.data)
+
+    // actions.resetForm();
   }
 
   return (
@@ -34,7 +51,7 @@ export default function Signup() {
       <div className='mb-3'>
         <div className='flex mb-1 items-end' >
           <label htmlFor='username' className='whitespace-nowrap pr-4' style={{ width: '50%' }}>Username</label>
-          <input value={values.username} onChange={(e) => { console.log(e); handleChange(e)}} onBlur={handleBlur} id="username" style={{ width: '70%' }}
+          <input value={values.username} onChange={(e) => { handleChange(e) }} onBlur={handleBlur} id="username" style={{ width: '70%' }}
             className={`bg-transparent outline-none text-lg border-b-2 border-white w-full ${errors.username && touched.username ? "border-red-600" : ""}`} />
         </div>
         <div className='flex justify-end text-xs' >
@@ -49,6 +66,16 @@ export default function Signup() {
         </div>
         <div className='flex justify-end text-xs' >
           {errors.password && touched.password && <p className="text-red-600">{errors.password}</p>}
+        </div>
+      </div>
+      <div className='mb-3'>
+        <div className='flex mb-1 items-end' >
+          <label htmlFor='coursename' className='whitespace-nowrap pr-4' style={{ width: '50%' }}>Course Name</label>
+          <input value={values.coursename} onChange={(e) => { handleChange(e) }} onBlur={handleBlur} id="coursename" style={{ width: '70%' }}
+            className={`bg-transparent outline-none text-lg border-b-2 border-white w-full ${errors.coursename && touched.coursename ? "border-red-600" : ""}`} />
+        </div>
+        <div className='flex justify-end text-xs' >
+          {errors.coursename && touched.coursename && <p className="text-red-600">{errors.coursename}</p>}
         </div>
       </div>
       <div className='mb-3'>
@@ -72,7 +99,7 @@ export default function Signup() {
         </div>
       </div>
       <div className='mx-4 mt-8 mb-4'>
-        <button disabled={isSubmitting} type='submit' className='bg-orange-500 text-lg text-sky-600 w-full py-2 rounded-md font-bold'>SignUp</button>
+        <button disabled={isSubmitting} type='submit' className='bg-orange-500 text-lg text-sky-600 w-full py-2 rounded-md font-bold'>SignUp/Add Course</button>
       </div>
     </form>
   )

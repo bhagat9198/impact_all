@@ -10,6 +10,7 @@ export const signupSchema = yup.object().shape({
     .string()
     .min(5)
     .matches(passwordRules, { message: "Please create a stronger password" }),
+  coursename: yup.string().min(4, "coursename must be atleast of 4 characters").required("Required"),
   startDate: yup.date().required("Required"),
   endDate: yup.date().min(yup.ref("startDate"), "End date can't be before start date").required("Required")
 });

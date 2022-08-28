@@ -11,7 +11,7 @@ export default function Modal(props) {
         <div className='flex justify-end'>
           <AiOutlineCloseCircle onClick={() => modalHandler(false)} className='text-3xl cursor-pointer ' />
         </div>
-        <div>
+        <div className='h-full w-full'>
           {children}
         </div>
       </div>
