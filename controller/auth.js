@@ -48,7 +48,8 @@ async function addNewUser({ userData }) {
     return {
       status: true,
       data: savedUser,
-      token
+      token,
+      message: 'New user got created'
     }
   } catch(error) {
     logger('error :: ', error);
@@ -70,8 +71,9 @@ async function updateExistingUser({ user, userData }) {
     const token = await jwt.sign({ username: userData.username, id: savedUser._id }, JWT_SECRET);
     return {
       status: true,
-      data: savedUser,
-      token
+      data: { username: userData.username, courses: [...user.courses, { name: userData.coursename, startDate: userData.startDate, endDate: userData.endDate }] },
+      token,
+      message: 'Existing user courses updated'
     }
   } catch (error) {
     return {
@@ -213,7 +215,7 @@ exports.postSignin = async (req, res, next) => {
   return res.status(200).json({
     status: true,
     data: user,
-    token
+    token,
   });
 
 }
