@@ -94,7 +94,7 @@ async function checkUserPassword({ userData, user }) {
     } else {
       return {
         status: false,
-        message: "Email or Password is wrong"
+        message: "Password is wrong"
       }
     }
   } catch (error) {
