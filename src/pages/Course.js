@@ -33,13 +33,12 @@ export default function Course() {
   }, [])
 
   const modalHandler = (val) => {
-    console.log('Course :: modalHandler :: val :: ', val);
     setModalOpen(val)
   };
   
   return (
     <BodyLayout >
-      <div className="grid grid-cols-4 gap-4 p-4">
+      <div className="grid grid-cols-2 gap-4 p-4 md:grid-cols-4">
         <Card modalHandler={modalHandler} />
         <Card modalHandler={modalHandler} />
         <Card modalHandler={modalHandler} />

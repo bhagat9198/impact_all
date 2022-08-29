@@ -13,6 +13,9 @@ export default function Dashboard() {
   const updateUserDetails = useUserStore(state => state.updateUserDetails);
   const navigate = useNavigate();
 
+  // console.log('Dashboard :: userAuthenticated :: ', userAuthenticated);
+  // console.log('Dashboard :: userDetails :: ', userDetails);
+
   async function checkToken(token) {
     const res = await getUserDetails(token)
     if (res.status) {
@@ -34,7 +37,7 @@ export default function Dashboard() {
 
   return (
     <BodyLayout>
-      <div className="grid grid-cols-3 gap-4 p-4">
+      <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-3">
         {userAuthenticated && userDetails?.courses.map(courseData => <CourseCard courseData={courseData} />)}
       </div>
     </BodyLayout>

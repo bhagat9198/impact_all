@@ -32,18 +32,17 @@ export default function Signup(props) {
   });
 
   async function onSubmit(values, actions) {
-    // console.log('onSubmit :: values :: ', values);
     const res = await signupUser(values)
-    console.log('onSubmit :: res :: ', res);
     if (!res.status) {
       toast.error(res.message);
       return
     }
+    toast.success(res.message)
     localStorage.setItem('impact_user', res.token)
-    updateAuthState(true)
     updateUserDetails(res.data)
+    updateAuthState(true)
 
-    // actions.resetForm();
+    actions.resetForm();
   }
 
   return (
@@ -61,7 +60,7 @@ export default function Signup(props) {
       <div className='mb-3'>
         <div className='flex mb-1 items-end' >
           <label htmlFor='password' className='whitespace-nowrap pr-4' style={{ width: '50%' }}>Password</label>
-          <input value={values.password} onChange={handleChange} onBlur={handleBlur} id="password" style={{ width: '70%' }}
+          <input value={values.password} onChange={handleChange} onBlur={handleBlur} id="password" type='password' style={{ width: '70%' }}
             className={`bg-transparent outline-none text-lg border-b-2 border-white w-full ${errors.password && touched.password ? "border-red-600" : ""}`} />
         </div>
         <div className='flex justify-end text-xs' >

@@ -27,7 +27,6 @@ export default function Signin() {
   });
 
   async function onSubmit(values, actions) {
-    console.log(values);
     const res = await signinUser(values);
     if(!res.status) {
       toast.error(res.message);

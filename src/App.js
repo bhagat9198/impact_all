@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import Auth from './pages/Auth';
 import Course from './pages/Course';
@@ -17,6 +18,7 @@ export default function App() {
           <Route path='/auth' element={<Auth />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/courses' element={<Course />} />
+          <Route path='/' element={<Home />} />
           <Route path='*' element={<Error />} />
         </Routes>
       </Router>
@@ -35,4 +37,13 @@ export default function App() {
       <ToastContainer />
     </>
   )
+}
+
+function Home() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    return navigate(`/auth`)
+  })
+
 }

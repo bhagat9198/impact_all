@@ -5,7 +5,6 @@ const { BASE_URL } = config
 export const signupUser = async (data) => {
   try {
     const res = await axios.post(`${BASE_URL}/signup`, data)
-    console.log('signupUser :: res :: ', res);
     return res.data;
   } catch (error) {
     console.log('signupUser :: error :: ', error);
@@ -19,7 +18,6 @@ export const signupUser = async (data) => {
 export const signinUser = async (data) => {
   try {
     const res = await axios.post(`${BASE_URL}/signin`, data)
-    console.log('signinUser :: res :: ', res);
     return res.data
   } catch (error) {
     console.log('signinUser :: error :: ', error);
@@ -37,7 +35,6 @@ export const getUserDetails = async (data) => {
         'x-access-token': data
       }
     })
-    console.log('getUserDetails :: res :: ', res);
     return res.data;
   } catch (error) {
     console.log('getUserDetails :: error :: ', error);
@@ -55,7 +52,6 @@ export const logoutUser = async(data) => {
         'x-access-token': data
       }
     })
-    console.log('logoutUser :: res :: ', res);
     return res.data;
   } catch (error) {
     console.log('logoutUser :: error :: ', error);

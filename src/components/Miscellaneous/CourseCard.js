@@ -9,7 +9,11 @@ export default function CourseCard(props) {
   const eDate = new Date(endDate).valueOf()
   const sDate = new Date(startDate).valueOf()
   const cDate = new Date().valueOf()
-  const percent = ((cDate - sDate) * 100)/(eDate - sDate)
+  let percent = ((cDate - sDate) * 100)/(eDate - sDate)
+
+  if(percent > 100) {
+    percent = 100;
+  }
 
   const clickHandler = () => {
     return navigate(`/courses`)
@@ -30,7 +34,7 @@ export default function CourseCard(props) {
       </div>
       <div className='my-2 border-x-4 border-l-white border-r-orange-500 flex h-5 items-center'>
         <div className='bg-gray-800 border-y-2 border-sky-700 h-3.5  relative w-full'  >
-          <div className='absolute left-0 h-3.5 rounded-r-full' style={{ width: percent, backgroundImage: 'linear-gradient(to right, #383CC1 , #1B98F5)', top: -2 }} >
+          <div className='absolute left-0 h-3.5 rounded-r-full' style={{ width: `${percent}%`, backgroundImage: 'linear-gradient(to right, #383CC1 , #1B98F5)', top: -2 }} >
           </div>
         </div>
       </div>

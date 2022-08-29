@@ -39,7 +39,7 @@ export default function Navbar() {
           <p className='px-2 text-sm' >Hi, {userDetails.username}</p>
           <BiUserCircle className='' />
         </div>
-        <div className='flex items-center justify-center py-1 mt-1 bg-red-600 text-white font-bold uppercase text-xs cursor-pointer' onClick={logoutHandler} >
+        <div className='flex items-center justify-center py-1 mt-1 bg-red-600 text-white font-bold uppercase text-xs cursor-pointer px-2 rounded-md' onClick={logoutHandler} >
           Logout
         </div>
       </div>}
