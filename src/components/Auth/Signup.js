@@ -98,7 +98,7 @@ export default function Signup(props) {
         </div>
       </div>
       <div className='mx-4 mt-8 mb-4'>
-        <button disabled={isSubmitting} type='submit' className='bg-orange-500 text-lg text-sky-600 w-full py-2 rounded-md font-bold'>SignUp/Add Course</button>
+        <button disabled={isSubmitting} type='submit' className='bg-orange-500 text-lg text-sky-600 w-full py-2 rounded-md font-bold'>{isSubmitting ? 'Submiting...' : 'SignUp/Add Course'}</button>
       </div>
     </form>
   )

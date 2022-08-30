@@ -66,7 +66,7 @@ export default function Signin() {
       </div>
       <div className='mb-10 h-2'></div>
       <div className='mx-4 mt-8 mb-4'>
-        <button disabled={isSubmitting} type='submit' className='bg-orange-500 text-lg text-sky-600 w-full py-2 rounded-md font-bold'>SignIn</button>
+        <button disabled={isSubmitting} type='submit' className='bg-orange-500 text-lg text-sky-600 w-full py-2 rounded-md font-bold'>{ isSubmitting? 'Signing In...': 'SignIn'}</button>
       </div>
     </form>
   )
